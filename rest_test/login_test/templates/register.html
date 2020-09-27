@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script type = "text/javascript">
+    var registerURL = "register";
+    var checkURL = "check_data";
+
+    $(document).ready(
+       function() {
+       }
+    );
+
+
+<!-- 어딘가 에러 발생 -->
+<!---->
+<!--    $(function(){-->
+<!--        $("#alert-danger").hide();-->
+<!--        $("#alert-success").hide();-->
+<!--        $("input").keyup(function(){-->
+<!--            var pwd = $("#pwd").val();-->
+<!--            var pwd_confirm=$("#pwd_confirm").val();-->
+<!--            if(pw != '' || pwd2 != ''){-->
+<!--                if(pwd == pwd_confirm){-->
+<!--                    $("#alert-success").show();-->
+<!--                    $("#alert-danger").hide();-->
+<!--                    $("#register).removeAttr('disabled');-->
+<!--                }else{-->
+<!--                    $("#alert-success").hide();-->
+<!--                    $("#alert-danger").show();-->
+<!--                    $('#register).attr('disabled');-->
+<!--                }-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+
+
+// 유저 가입
+    function addUser()
+    {
+       alert(registerURL)
+       $.ajax(
+          { "url": registerURL,
+             "data": {
+                       "id" : $("#id").val(),
+                       "pwd" : $("#pwd").val(),
+                       "name" : $("#name").val(),
+                       "birth" : $("#birth").val(),
+                       "email" : $("#email").val(),
+                       "phone_num" : $("#phone_num").val(),
+                       "addr" : $("#addr").val(),
+                       "rcmd_id" : $("#rcmd_id").val(),
+                       "category" : $("#category").val()
+                     },
+             "type" : "post",
+             "success" : add_success,
+             "error" : add_error
+          }
+      ); // ajax()
+    }
+
+    function add_success()
+    {
+      alert("회원 가입 완료");
+    }
+
+    function add_error()
+    {
+      alert("예상한 에러가 발생했습니다." );
+    }
+
+
+
+// 이메일 형식 체크
+
+
+// DOB 숫자, 글자수 체크
+
+
+
+
+
+/// 데이터 통신 체크
+    function CheckData()
+    {
+       $.getJSON(checkURL,{},showCourses);
+       alert(checkURL);
+    }
+
+    function showCourses(users) {
+       $("#courserows").html("")
+       $.each(users,
+              function(idx,user) {
+                 $("#courserows").append("<tr><td>" + user.id + "</td><td>");
+              } // anonymous function
+        ); // each()
+
+        $("#courses").show();
+   } // showCourses
+
+
+    </script>
+</head>
+<body>
+    <h1>REGISTER</h1>
+        <p/>
+        ID ( code ) <br/>
+            <input type="text" id="id" maxlength="24"/><br/>
+        PWD ( title )<br/>
+            <input type="text" id="pwd" maxlength="30"/><br/>
+        CONFIRM PWD ( title )<br/>
+            <input type="text" id="pwd_confirm" maxlength="30"/><br/>
+
+<!--            <div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>-->
+<!--            <div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>​-->
+        name
+                <input type="text" id="name" maxlength="30"/><br/>
+        birth <br/>
+                <input type="text" id="birth" maxlength="7"/><br/>
+        email <br/>
+                <input type="text" id="email" maxlength="50"/><br/>
+        phone_num ( duration )<br/>
+                <input type="text" id="phone_num" maxlength="10"/><br/>
+        addr <br/>
+                <input type="text" id="addr" maxlength="50"/><br/>
+        rcmd_id <br/>
+            <input type="text" id="rcmd_id" maxlength="24"/><br/>
+        category ( duration )<br/>
+                <input type="text" id="category" maxlength="10"/><br/>
+        <p/>
+
+        <button onclick="addUser()" id="register"> 회원가입 </button>
+        <button onclick="deleteCourse()" id="delete">회원탈퇴 </button>
+        <button onclick="CheckData()" id="checkData">정보확인 </button>
+        <p/>
+
+
+
+
+        <table border="1" cellpadding="5pt" id="courses">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                </tr>
+            </thead>
+            <tbody id="courserows"></tbody>
+        </table>
+
+</body>
+</html>

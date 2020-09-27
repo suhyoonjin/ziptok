@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script>
+    var URL = "/rest_courses/";
+
+    $(document).ready(
+       function() {
+          $("#courses").hide();
+       }
+    );
+
+    function register_page()
+    {
+        window.location.href = '/login_test/register_page'
+    }
+
+    function login()
+    {
+    }
+
+    function logout()
+    {
+    }
+
+    </script>
+</head>
+<body>
+    <h1>Hello</h1>
+        <p/>
+        ID ( code ) <br/>
+            <input type="text" id="code"/><br/>
+        PWD ( title )<br/>
+            <input type="text" id="title"/><br/>
+        isExpert ( duration )<br/>
+            <input type="number" id="duration"/><br/>
+        <p/>
+        <button onclick="login">로그인</button>
+        <button onclick="logout">로그아웃</button>
+        <button onclick="getCourse()">회원정보</button>
+<!--        <button onclick="window.location.href='/login_test/register'"> Register </button>-->
+        <button onclick="register_page()">회원가입3 </button>
+        <p/>
+</body>
+</html>

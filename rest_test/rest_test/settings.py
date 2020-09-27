@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'restapi',  # Our Application
     'rest_framework',   # Django REST Framework
+    'login_test',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

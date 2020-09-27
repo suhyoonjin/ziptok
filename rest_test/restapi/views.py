@@ -12,17 +12,20 @@ class CourseSerializer(serializers.ModelSerializer):
 
 
 def client(request):
-    return render(request, "./rest_client.html")
+    return render(request, "rest_client.html")
 
 @api_view(['GET', 'POST'])
 def list_courses(request):
     if request.method == "GET":
         courses = Course.objects.all()
         serializer = CourseSerializer(courses, many=True)
+        # print(serializer.data)
+        print(serializer.data)
         return Response(serializer.data)
     else:  # Post
         serializer = CourseSerializer(data=request.data)
         if serializer.is_valid():
+            # print(serializer.data)
             serializer.save()
             return Response(serializer.data, status=201)  # Successful post
 
